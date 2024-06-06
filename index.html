@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>moving ball</title>
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -12,12 +12,12 @@
     <div class="mydiv" id="mydiv"></div>
 
     <div id="touch"> 
-        <button class="button" id="upButton">Up</button>
+        <button class="button" id="upButton">up</button>
         <div class="left-right">
-            <button class="button" id="leftButton">Left</button>
-            <button class="button" id="rightButton">Right</button>
+            <button class="button" id="leftButton">left</button>
+            <button class="button" id="rightButton">right</button>
         </div>  
-        <button class="button" id="downButton">Down</button>
+        <button class="button" id="downButton">down</button>
     </div>
 
     <script>
@@ -34,14 +34,14 @@
 
         function ballPosition() {
          
-            ball.style.left = ballXPosition + 'px';
+            ball.style.right = ballXPosition + 'px';
             ball.style.top = ballYPosition + 'px';
         }
 
         ballPosition();
 
         function moveLeft() {
-            ballXPosition -= step;
+            ballXPosition += step;
             if (ballXPosition < 0) {
                 ballXPosition = 0;
             }
@@ -49,7 +49,7 @@
         }
 
         function moveRight() {
-            ballXPosition += step;
+            ballXPosition -= step;
             if (ballXPosition > window.innerWidth - ball.offsetWidth) {
                 ballXPosition = window.innerWidth - ball.offsetWidth; 
             }
