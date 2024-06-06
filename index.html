@@ -33,8 +33,9 @@
         let ballYPosition = window.innerHeight / 2 - ball.offsetHeight / 2;
 
         function ballPosition() {
-            ball.style.left = `${ballXPosition}px`;
-            ball.style.top = `${ballYPosition}px`;
+         
+            ball.style.left = ballXPosition + 'px';
+            ball.style.top = ballYPosition + 'px';
         }
 
         ballPosition();
@@ -65,8 +66,8 @@
 
         function moveDown() {
             ballYPosition += step;
-            if (ballYPosition > window.innerHeight - ball.offsetHeight - touch.offsetHeight) {
-                ballYPosition = window.innerHeight - ball.offsetHeight - touch.offsetHeight; 
+            if (ballYPosition > window.innerHeight - ball.offsetHeight) {
+                ballYPosition = window.innerHeight - ball.offsetHeight;
             }
             ballPosition();
         }
@@ -92,6 +93,7 @@
          rightButton.addEventListener('click', moveRight);
          upButton.addEventListener('click', moveUp);
          downButton.addEventListener('click', moveDown);
+         
     </script>
 </body>
 </html>
