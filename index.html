@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <div class="mydiv" id="mydiv"></div>
+
+    <div id="touch"> 
+        <button class="button" id="upButton">Up</button>
+        <div class="left-right">
+            <button class="button" id="leftButton">Left</button>
+            <button class="button" id="rightButton">Right</button>
+        </div>  
+        <button class="button" id="downButton">Down</button>
+    </div>
+
+    <script>
+        const ball = document.getElementById('mydiv');
+        const leftButton = document.getElementById('leftButton');
+        const rightButton = document.getElementById('rightButton');
+        const upButton = document.getElementById('upButton');
+        const downButton = document.getElementById('downButton');
+        const touch = document.getElementById('touch');
+        const step = 5; 
+
+        let ballXPosition = window.innerWidth / 2 - ball.offsetWidth / 2;
+        let ballYPosition = window.innerHeight / 2 - ball.offsetHeight / 2;
+
+        function ballPosition() {
+            ball.style.left = `${ballXPosition}px`;
+            ball.style.top = `${ballYPosition}px`;
+        }
+
+        ballPosition();
+
+        function moveLeft() {
+            ballXPosition -= step;
+            if (ballXPosition < 0) {
+                ballXPosition = 0;
+            }
+            ballPosition();
+        }
+
+        function moveRight() {
+            ballXPosition += step;
+            if (ballXPosition > window.innerWidth - ball.offsetWidth) {
+                ballXPosition = window.innerWidth - ball.offsetWidth; 
+            }
+            ballPosition();
+        }
+
+        function moveUp() {
+            ballYPosition -= step;
+            if (ballYPosition < 0) {
+                ballYPosition = 0;
+            }
+            ballPosition();
+        }
+
+        function moveDown() {
+            ballYPosition += step;
+            if (ballYPosition > window.innerHeight - ball.offsetHeight - touch.offsetHeight) {
+                ballYPosition = window.innerHeight - ball.offsetHeight - touch.offsetHeight; 
+            }
+            ballPosition();
+        }
+        
+        // pour les touches du PC
+
+         window.addEventListener('keydown', (e) => {
+             if (e.key === 'ArrowLeft') {
+                 moveLeft();
+             } else if (e.key === 'ArrowRight') {
+                 moveRight();
+             } else if (e.key === 'ArrowUp') {
+                 moveUp();
+             } else if (e.key === 'ArrowDown') {
+                 moveDown();
+             }
+         });
+
+
+       // pour les touch  creer  dans la page
+
+         leftButton.addEventListener('click', moveLeft);
+         rightButton.addEventListener('click', moveRight);
+         upButton.addEventListener('click', moveUp);
+         downButton.addEventListener('click', moveDown);
+    </script>
+</body>
+</html>
